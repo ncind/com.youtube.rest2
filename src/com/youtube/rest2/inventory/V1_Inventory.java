@@ -22,11 +22,12 @@ public class V1_Inventory {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String returnAllPCParts() throws Exception{
+	public Response returnAllPCParts() throws Exception{
 		
 		PreparedStatement query = null;
 		Connection conn = null;
 		String returnString = null;
+		Response rb = null;
 		
 		
 		try {
@@ -45,6 +46,8 @@ public class V1_Inventory {
 			query.close(); //close the connection
 			
 			returnString = json.toString();
+			//Build the response object
+			rb = Response.ok(returnString).build();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +56,7 @@ public class V1_Inventory {
 			if(conn != null){conn.close();}
 		}
 		
-		return returnString;
+		return rb;
 	}
 	
 }
