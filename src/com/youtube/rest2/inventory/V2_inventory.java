@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.QueryParam;
 
 import org.codehaus.jettison.json.JSONArray;
+import com.youtube.dao.SchemaVMDB;
 
 @Path("/v2/inventory")
 public class V2_inventory {
@@ -21,6 +22,14 @@ public class V2_inventory {
 		JSONArray json = new JSONArray();
 		
 		try {
+			
+			if(brand == null){
+				return Response.status(400).entity("Error : Please specify brand for this search").build();
+			}
+			
+			SchemaVMDB dao = new SchemaVMDB();
+			json = dao.queryReturnBrandParts(brand);
+			returnString = json.toString();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

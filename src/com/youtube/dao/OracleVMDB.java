@@ -1,5 +1,6 @@
 package com.youtube.dao;
 
+import java.sql.Connection;
 import javax.naming.*;
 import javax.sql.*;
 
@@ -28,6 +29,18 @@ public class OracleVMDB {
 		}
 
 		return OracleVM;
+	}
+	
+	protected static Connection oraclePcPartsConnection(){
+		Connection conn = null;
+		try {
+			conn = OracleVMConn().getConnection();
+			return conn;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
 	}
 
 }
