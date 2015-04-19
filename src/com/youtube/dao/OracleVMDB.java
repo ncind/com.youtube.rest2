@@ -20,7 +20,7 @@ public class OracleVMDB {
 				context = new InitialContext();
 			}
 			
-			OracleVM = (DataSource)context.lookup("VMOracle");
+			OracleVM = (DataSource) context.lookup("VMOracleNik");
 
 		} catch (Exception e) {
 			
